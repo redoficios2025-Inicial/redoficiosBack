@@ -127,7 +127,7 @@ const login = async (req, res) => {
       return res.status(400).json({ msg: "Contraseña incorrecta" });
 
     // Generar token con UserId
-    const token = jwt.sign({ id: usuario.UserId },'miSuperClaveSecretaMuyLargaYLlenaDeCaracteres123!@#, {
+    const token = jwt.sign({ id: usuario.UserId },'miSuperClaveSecretaMuyLargaYLlenaDeCaracteres123!@#', {
       expiresIn: "7d",
     });
 
@@ -232,4 +232,5 @@ const cambiarPassword = async (req, res) => {
 };
 
 module.exports = { register, login, verificarCodigo, cambiarPassword };
+
 
