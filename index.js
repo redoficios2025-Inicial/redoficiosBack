@@ -21,7 +21,7 @@ const comentarioRoute = require("./routes/comentarioRoute");
 const upload = require('./middleware/cloudinary'); 
 
 // Conectar a MongoDB
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect('mongodb+srv://redoficios2025:redOficios2025@cluster0.3yxxedh.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
   .then(() => console.log('✅ Conectado a MongoDB'))
   .catch(err => console.error(err));
 
@@ -42,3 +42,4 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`✅ Servidor corriendo en http://localhost:${PORT}`);
 });
+
