@@ -8,7 +8,7 @@ const verificarToken = (req, res, next) => {
   if (!token) return res.status(401).json({ msg: 'No hay token, autorización denegada' });
 
   try {
-    const decoded = jwt.verify(token.replace('Bearer ', ''), process.env.JWT_SECRET);
+    const decoded = jwt.verify(token.replace('Bearer ', ''),'miSuperClaveSecretaMuyLargaYLlenaDeCaracteres123!@#');
     req.usuarioId = decoded.id;
     next();
   } catch (error) {
@@ -17,3 +17,4 @@ const verificarToken = (req, res, next) => {
 };
 
 module.exports = { verificarToken };
+
