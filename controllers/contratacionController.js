@@ -99,13 +99,16 @@ await Usuario.findOneAndUpdate(
       await existeEmpleador.save();
     }
 
+    const EMAIL_USER= 'redoficios2025@gmail.com'
+    const EMAIL_PASS= 'flwg fmxy jygh liep'
+    
     // Enviar emails
-    if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+    if (EMAIL_USER && EMAIL_PASS) {
       const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
-          user: process.env.EMAIL_USER,
-          pass: process.env.EMAIL_PASS,
+          user: EMAIL_USER,
+          pass: EMAIL_PASS,
         },
       });
 
@@ -131,7 +134,7 @@ await Usuario.findOneAndUpdate(
 
       // Email para empleador
       await transporter.sendMail({
-        from: `"RedOficios" <${process.env.EMAIL_USER}>`,
+        from: `RedOficios oficial <redoficios2025@gmail.com>`,
         to: correoEmpleador,
         subject: "Nueva contratación registrada en RedOficios",
         html: `
@@ -144,16 +147,15 @@ await Usuario.findOneAndUpdate(
             <h1 style="text-align:center; color:red;">IMPORTANTE</h1>
             <p>Por favor guardalo asi cuando contactes por whatsapp puedes pedir este codigo para asegurarte de que estas con la persona que elegiste.</p>
             <p>Accedé a la plataforma para gestionar la contratación.</p>
-            <a href="https://tu-sitio.com/notificaciones" style="${buttonStyle}">Ver Contratación</a>
             <hr style="margin:20px 0;">
             <p style="font-size:12px; color:#777;">Gracias por usar RedOficios.</p>
           </div>
         `,
       });
-
+      // <a href="https://tu-sitio.com/notificaciones" style="${buttonStyle}">Ver Contratación</a>
       // Email para empleado
       await transporter.sendMail({
-        from: `"RedOficios" <${process.env.EMAIL_USER}>`,
+        from: `RedOficios oficial <redoficios2025@gmail.com>`,
         to: correoEmpleado,
         subject: "Has sido contratado en RedOficios",
         html: `
@@ -165,14 +167,13 @@ await Usuario.findOneAndUpdate(
             <p>Este es tu <b>código de seguimiento</b> (compartido con tu empleador):</p>
             <h1 style="text-align:center; color:#333;">${codigoPlano}</h1>
             <p>Ingresá a la plataforma para ver los detalles de tu contratación.</p>
-            <a href="https://tu-sitio.com/notificaciones" style="${buttonStyle}">Ver Contratación</a>
             <hr style="margin:20px 0;">
             <p style="font-size:12px; color:#777;">Gracias por usar RedOficios.</p>
           </div>
         `,
       });
     }
-
+    // <a href="https://tu-sitio.com/notificaciones" style="${buttonStyle}">Ver Contratación</a>
     // Respuesta al frontend
     res.status(201).json({
       message: "Contratación creada",
