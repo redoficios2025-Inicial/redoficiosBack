@@ -95,12 +95,12 @@ const register = async (req, res) => {
         </div>
         <p style="color: #555555; font-size: 14px;">Contraseña temporal: <strong>${passwordTemp}</strong></p>
         <p style="color: #999999; font-size: 12px; margin-top: 20px;">Este código es válido por 10 minutos.</p>
-        <a href="https://tu-sitio.com/login" style="display: inline-block; margin-top: 20px; background-color: #4ade80; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 5px;">Iniciar sesión</a>
       </div>
     </div>
   </div>
   `,
     });
+        // <a href="https://tu-sitio.com/login" style="display: inline-block; margin-top: 20px; background-color: #4ade80; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 5px;">Iniciar sesión</a>
 
     res.json({
       msg: "Código de verificación enviado al correo",
@@ -127,7 +127,7 @@ const login = async (req, res) => {
       return res.status(400).json({ msg: "Contraseña incorrecta" });
 
     // Generar token con UserId
-    const token = jwt.sign({ id: usuario.UserId },'miSuperClaveSecretaMuyLargaYLlenaDeCaracteres123!@#', {
+    const token = jwt.sign({ id: usuario.UserId }, 'miSuperClaveSecretaMuyLargaYLlenaDeCaracteres123!@#', {
       expiresIn: "7d",
     });
 
@@ -232,5 +232,3 @@ const cambiarPassword = async (req, res) => {
 };
 
 module.exports = { register, login, verificarCodigo, cambiarPassword };
-
-
